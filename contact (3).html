@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>酷崎蛋糕工房 | 聯絡我們</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Caveat:wght@500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#fdf6ec;--warm:#f5e6cc;--caramel:#c8853a;--dark:#3a2a1a;--muted:#8a6d50;--accent:#e05c2a;--light:#fff9f2;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--dark);font-family:'Noto Sans TC',sans-serif;font-weight:300;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(253,246,236,.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(200,133,58,.2);}
+.nav-logo{font-family:'Caveat',cursive;font-size:1.55rem;font-weight:700;color:var(--caramel);text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:.82rem;font-weight:500;letter-spacing:.08em;padding:.25rem 0;border-bottom:2px solid transparent;transition:.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--caramel);border-color:var(--caramel);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--dark);}
+
+.page-hero{margin-top:64px;height:300px;position:relative;overflow:hidden;}
+.page-hero img{width:100%;height:100%;object-fit:cover;display:block;}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(30,18,8,.65) 0%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:3rem 8%;}
+.hero-label{font-family:'Caveat',cursive;font-size:1.05rem;color:var(--warm);letter-spacing:.12em;margin-bottom:.5rem;}
+.hero-title{font-family:'Noto Serif TC',serif;font-size:2.5rem;font-weight:900;color:#fff;}
+
+/* CONTACT LAYOUT */
+.contact-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:0;min-height:500px;}
+.contact-info{padding:4rem 7%;background:var(--warm);display:flex;flex-direction:column;justify-content:center;}
+.contact-info h2{font-family:'Noto Serif TC',serif;font-size:1.6rem;font-weight:900;margin-bottom:.4rem;}
+.contact-info .sub{font-size:.83rem;color:var(--muted);margin-bottom:2.5rem;}
+.info-row{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.8rem;}
+.info-row .icon{font-size:1.4rem;flex-shrink:0;margin-top:.15rem;}
+.info-row .label{font-family:'Caveat',cursive;font-size:.95rem;color:var(--caramel);margin-bottom:.2rem;}
+.info-row .val{font-size:.85rem;color:var(--muted);line-height:1.85;}
+.info-row .val a{color:var(--dark);text-decoration:none;border-bottom:1px solid rgba(58,42,26,.2);transition:.2s;}
+.info-row .val a:hover{color:var(--caramel);border-color:var(--caramel);}
+
+.map-wrap{position:relative;}
+.map-wrap iframe{width:100%;height:100%;min-height:500px;border:none;display:block;}
+
+/* HOURS TABLE */
+.hours-section{padding:3.5rem 8%;background:var(--light);}
+.hours-section h2{font-family:'Noto Serif TC',serif;font-size:1.5rem;font-weight:900;margin-bottom:1.5rem;text-align:center;}
+.hours-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem;max-width:700px;margin:0 auto;}
+.day-card{background:#fff;border-radius:6px;padding:1rem .5rem;text-align:center;box-shadow:0 2px 12px rgba(58,42,26,.06);}
+.day-card.open{border-top:3px solid var(--caramel);}
+.day-card.closed{border-top:3px solid #ccc;opacity:.6;}
+.day-name{font-family:'Noto Serif TC',serif;font-weight:700;font-size:.85rem;margin-bottom:.4rem;}
+.day-time{font-size:.72rem;color:var(--muted);line-height:1.6;}
+
+/* MESSAGE FORM */
+.form-section{padding:4rem 8%;}
+.form-section h2{font-family:'Noto Serif TC',serif;font-size:1.6rem;font-weight:900;margin-bottom:.4rem;}
+.form-section .sub{font-size:.83rem;color:var(--muted);margin-bottom:2rem;}
+.contact-form{max-width:620px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.form-group{display:flex;flex-direction:column;gap:.4rem;}
+.form-group label{font-size:.8rem;font-weight:500;color:var(--muted);letter-spacing:.05em;}
+.form-group input,.form-group textarea,.form-group select{border:1.5px solid rgba(200,133,58,.25);background:var(--light);color:var(--dark);padding:.6rem .9rem;border-radius:4px;font-size:.85rem;font-family:'Noto Sans TC',sans-serif;outline:none;transition:border-color .2s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--caramel);}
+.form-group textarea{resize:vertical;min-height:120px;}
+.form-full{grid-column:1/-1;}
+.submit-btn{background:var(--caramel);color:#fff;border:none;padding:.65rem 2.2rem;border-radius:4px;font-size:.85rem;font-family:'Noto Sans TC',sans-serif;cursor:pointer;letter-spacing:.1em;transition:background .25s;margin-top:.5rem;}
+.submit-btn:hover{background:var(--accent);}
+.form-success{display:none;background:#d4edda;color:#2d6a4f;padding:1rem 1.2rem;border-radius:4px;font-size:.85rem;margin-top:1rem;border-left:3px solid #2d6a4f;}
+
+footer{background:#261a0e;color:rgba(245,230,204,.45);text-align:center;padding:1.8rem 1rem;font-size:.76rem;letter-spacing:.07em;}
+footer a{color:var(--caramel);text-decoration:none;margin:0 .5rem;}
+footer .footer-links{margin-top:.55rem;}
+
+.fade-up{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){.hours-grid{grid-template-columns:repeat(4,1fr);}.form-row{grid-template-columns:1fr;}}
+@media(max-width:700px){
+  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:var(--cream);flex-direction:column;padding:1.5rem 2rem;border-bottom:1px solid rgba(200,133,58,.2);gap:1.2rem;z-index:199;}
+  .nav-links.open{display:flex;}
+  .hamburger{display:flex;}
+  .contact-layout{grid-template-columns:1fr;}
+  .map-wrap iframe{min-height:320px;}
+  .page-hero{height:240px;}
+  .hero-title{font-size:1.8rem;}
+  .hours-grid{grid-template-columns:repeat(3,1fr);}
+  .form-section,.hours-section{padding:3rem 5%;}
+  .contact-info{padding:3rem 5%;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">酷崎 <span>蛋糕工房</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">首頁</a></li>
+    <li><a href="story.html">店家故事</a></li>
+    <li><a href="product.html">商品</a></li>
+    <li><a href="about.html">生活風格誌</a></li>
+    <li><a href="contact.html" class="active">聯絡我們</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=1400&q=80" alt="聯絡我們" onerror="this.src='https://images.unsplash.com/photo-1556910633-5099dc3971e8?w=1400&q=80'"/>
+  <div class="page-hero-overlay">
+    <div class="hero-label">Contact Us</div>
+    <div class="hero-title">歡迎來找我們</div>
+  </div>
+</div>
+
+<div class="contact-layout">
+  <div class="contact-info fade-up">
+    <h2>酷崎蛋糕工房</h2>
+    <p class="sub">期待在這裡與您相遇，嚐一口幸福。</p>
+
+    <div class="info-row">
+      <div class="icon">📍</div>
+      <div>
+        <div class="label">門市地址</div>
+        <div class="val">241 新北市三重區三安里<br>安樂街 1 號 1 樓</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="icon">📞</div>
+      <div>
+        <div class="label">聯絡電話</div>
+        <div class="val"><a href="tel:0909128270">0909-128-270</a></div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="icon">🕐</div>
+      <div>
+        <div class="label">營業時間</div>
+        <div class="val">
+          週一 ～ 週六：12:00 – 21:30<br>
+          週日：公休
+        </div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="icon">🚇</div>
+      <div>
+        <div class="label">交通資訊</div>
+        <div class="val">捷運三重國小站 步行約 8 分鐘<br>門口提供機車停車位</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-wrap">
+    <!-- Google Maps Embed – 新北市三重區安樂街1號 -->
+    <div style="width:100%;height:100%;min-height:500px;position:relative;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.3!2d121.48278!3d25.06558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a97c9f7b7b7b%3A0x0!2z5paw5YyX5biC5LiJ6YeR5Y2A5a6J5pys5q6157ea77yR6Jmf77yR5qur!5e0!3m2!1szh-TW!2stw!4v1699999999999!5m2!1szh-TW!2stw"
+        width="100%" height="100%" style="min-height:500px;border:none;display:block;"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="酷崎蛋糕工房位置">
+      </iframe>
+      <a href="https://maps.app.goo.gl/rVpW2q9WbdSEpbPz6" target="_blank"
+         style="position:absolute;bottom:1rem;right:1rem;background:#c8853a;color:#fff;padding:.5rem 1rem;border-radius:4px;font-size:.8rem;text-decoration:none;font-family:sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+        📍 在 Google Maps 開啟
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- HOURS -->
+<section class="hours-section fade-up">
+  <h2>每週營業時間</h2>
+  <div class="hours-grid">
+    <div class="day-card open"><div class="day-name">一</div><div class="day-time">12:00<br>–<br>21:30</div></div>
+    <div class="day-card open"><div class="day-name">二</div><div class="day-time">12:00<br>–<br>21:30</div></div>
+    <div class="day-card open"><div class="day-name">三</div><div class="day-time">12:00<br>–<br>21:30</div></div>
+    <div class="day-card open"><div class="day-name">四</div><div class="day-time">12:00<br>–<br>21:30</div></div>
+    <div class="day-card open"><div class="day-name">五</div><div class="day-time">12:00<br>–<br>21:30</div></div>
+    <div class="day-card open"><div class="day-name">六</div><div class="day-time">12:00<br>–<br>21:30</div></div>
+    <div class="day-card closed"><div class="day-name">日</div><div class="day-time">公休</div></div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+
+
+<footer>
+  <p>© Ku Chi Cake Workshop. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="index.html">首頁</a><a href="story.html">店家故事</a><a href="product.html">商品</a><a href="about.html">生活風格誌</a><a href="contact.html">聯絡我們</a>
+  </div>
+</footer>
+
+<script>
+
+  document.getElementById('formSuccess').style.display='block';
+  document.getElementById('fName').value='';
+  document.getElementById('fPhone').value='';
+  document.getElementById('fEmail').value='';
+  document.getElementById('fMsg').value='';
+  setTimeout(()=>{ document.getElementById('formSuccess').style.display='none'; },5000);
+}
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
