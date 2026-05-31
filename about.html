@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>酷崎蛋糕工房 | 生活風格誌</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Caveat:wght@500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#fdf6ec;--warm:#f5e6cc;--caramel:#c8853a;--dark:#3a2a1a;--muted:#8a6d50;--accent:#e05c2a;--light:#fff9f2;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--cream);color:var(--dark);font-family:'Noto Sans TC',sans-serif;font-weight:300;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(253,246,236,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(200,133,58,.2);}
+.nav-logo{font-family:'Caveat',cursive;font-size:1.55rem;font-weight:700;color:var(--caramel);text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:.82rem;font-weight:500;letter-spacing:.08em;padding:.25rem 0;border-bottom:2px solid transparent;transition:.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--caramel);border-color:var(--caramel);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--dark);}
+
+.page-hero{margin-top:64px;height:280px;overflow:hidden;background:#E8A030;}
+.page-hero img{width:100%;height:100%;object-fit:contain;background:#E8A030;display:block;}
+
+/* AI GENERATOR */
+.gen-area{padding:3.5rem 8%;background:var(--light);}
+.gen-area h2{font-family:'Noto Serif TC',serif;font-size:1.7rem;font-weight:900;margin-bottom:.4rem;}
+.gen-area .subtitle{font-size:.84rem;color:var(--muted);margin-bottom:2rem;}
+.gen-controls{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:1.5rem;align-items:center;}
+.gen-select{border:1.5px solid rgba(200,133,58,.3);background:var(--cream);color:var(--dark);padding:.52rem 1rem;border-radius:4px;font-size:.82rem;font-family:'Noto Sans TC',sans-serif;cursor:pointer;outline:none;}
+.gen-btn{background:var(--caramel);color:#fff;border:none;padding:.55rem 1.6rem;border-radius:4px;font-size:.82rem;font-family:'Noto Sans TC',sans-serif;cursor:pointer;transition:background .25s;}
+.gen-btn:hover{background:var(--accent);}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed;}
+.gen-output{background:#fff;border:1.5px solid rgba(200,133,58,.2);border-radius:6px;padding:1.8rem;min-height:150px;font-size:.88rem;line-height:2.1;color:var(--dark);white-space:pre-wrap;}
+.typing::after{content:'▌';animation:blink .7s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* ARTICLES */
+.articles-section{padding:4rem 8%;}
+.section-label{font-family:'Caveat',cursive;font-size:1.05rem;color:var(--caramel);letter-spacing:.1em;margin-bottom:.35rem;}
+.section-title{font-family:'Noto Serif TC',serif;font-size:1.85rem;font-weight:900;color:var(--dark);margin-bottom:2rem;line-height:1.35;}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.article-card{background:var(--light);border-radius:6px;overflow:hidden;box-shadow:0 2px 14px rgba(58,42,26,.07);transition:transform .3s;}
+.article-card:hover{transform:translateY(-6px);}
+.article-card img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .5s;}
+.article-card:hover img{transform:scale(1.05);}
+.article-body{padding:1.2rem;}
+.article-tag{display:inline-block;background:var(--warm);color:var(--caramel);font-size:.68rem;padding:.2rem .65rem;border-radius:2px;margin-bottom:.5rem;letter-spacing:.08em;}
+.article-title{font-family:'Noto Serif TC',serif;font-size:.95rem;font-weight:700;line-height:1.5;margin-bottom:.4rem;}
+.article-excerpt{font-size:.78rem;color:var(--muted);line-height:1.75;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+
+footer{background:#261a0e;color:rgba(245,230,204,.45);text-align:center;padding:1.8rem 1rem;font-size:.76rem;letter-spacing:.07em;}
+footer a{color:var(--caramel);text-decoration:none;margin:0 .5rem;}
+footer .footer-links{margin-top:.55rem;}
+
+@media(max-width:900px){.articles-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:700px){
+  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:var(--cream);flex-direction:column;padding:1.5rem 2rem;gap:1.2rem;z-index:199;}
+  .nav-links.open{display:flex;}
+  .hamburger{display:flex;}
+  .articles-grid{grid-template-columns:1fr;}
+  .page-hero{height:180px;}
+  .gen-area,.articles-section{padding:2.5rem 5%;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">酷崎 <span>蛋糕工房</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">首頁</a></li>
+    <li><a href="story.html">店家故事</a></li>
+    <li><a href="product.html">商品</a></li>
+    <li><a href="about.html" class="active">生活風格誌</a></li>
+    <li><a href="contact.html">聯絡我們</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <img src="https://s318205-ui.github.io/FLORA/1.jpg" alt="酷崎蛋糕工房"/>
+</div>
+
+<!-- AI 故事生成器 -->
+<div class="gen-area">
+  <h2>✨ AI 產品故事生成器</h2>
+  <p class="subtitle">選擇商品與風格，由 AI 為您生成專屬的產品故事或生活靈感文章。</p>
+  <div class="gen-controls">
+    <select class="gen-select" id="genProduct">
+      <option>北海道半熟乳酪</option>
+      <option>焦糖脆脆小泡芙</option>
+      <option>雪藏檸檬乳酪</option>
+      <option>草莓生乳捲</option>
+      <option>巧克力熔岩球</option>
+      <option>伯爵茶磅蛋糕</option>
+    </select>
+    <select class="gen-select" id="genStyle">
+      <option>溫暖療癒</option>
+      <option>文青生活</option>
+      <option>節日慶典</option>
+      <option>下午茶情境</option>
+      <option>贈禮指南</option>
+    </select>
+    <button class="gen-btn" id="genBtn" onclick="generateStory()">🍰 生成故事</button>
+  </div>
+  <div class="gen-output" id="genOutput">點擊上方按鈕，讓 AI 為您的甜點寫一個故事…</div>
+</div>
+
+<!-- 精選文章 -->
+<section class="articles-section">
+  <div class="section-label">Lifestyle Journal</div>
+  <div class="section-title">精選生活文章</div>
+  <div class="articles-grid">
+    <div class="article-card">
+      <img src="https://s318205-ui.github.io/FLORA/2.jpg" alt="焦糖脆脆小泡芙"/>
+      <div class="article-body">
+        <span class="article-tag">人氣商品</span>
+        <div class="article-title">焦糖脆脆小泡芙，一口接著一口</div>
+        <div class="article-excerpt">特製的小泡芙脆皮裹上香濃焦糖，口感香脆、微甜迷人。不論是單吃當零嘴，還是自己 DIY 沾冰淇淋、配牛奶都超百搭！每一顆都是幸福的滋味。</div>
+      </div>
+    </div>
+    <div class="article-card">
+      <img src="https://s318205-ui.github.io/FLORA/3.jpg" alt="雪霜檸檬"/>
+      <div class="article-body">
+        <span class="article-tag">季節限定</span>
+        <div class="article-title">雪霜檸檬，清新酸甜的夏日療癒</div>
+        <div class="article-excerpt">清新檸檬 × 輕盈雪霜，酸甜剛剛好。嚴選頂級乳酪打造出雪藏般的絲滑口感，每一口都是清爽的夏日記憶。</div>
+      </div>
+    </div>
+    <div class="article-card">
+      <img src="https://s318205-ui.github.io/FLORA/4.jpg" alt="母親節蛋糕"/>
+      <div class="article-body">
+        <span class="article-tag">節日慶典</span>
+        <div class="article-title">專屬於您的美好時刻</div>
+        <div class="article-excerpt">新鮮水果 × 柔滑鮮奶油，層層細緻，入口即是幸福。無論是生日慶祝、節日聚會，酷崎蛋糕工房都希望成為您生活中的一部分。</div>
+      </div>
+    </div>
+    <div class="article-card">
+      <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=75" alt="下午茶"/>
+      <div class="article-body">
+        <span class="article-tag">生活提案</span>
+        <div class="article-title">完美下午茶的五種搭配方式</div>
+        <div class="article-excerpt">從伯爵紅茶到鮮奶茶，不同茶飲搭配酷崎甜點，打造屬於你的午後儀式感。</div>
+      </div>
+    </div>
+    <div class="article-card">
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=75" alt="烘焙知識"/>
+      <div class="article-body">
+        <span class="article-tag">烘焙知識</span>
+        <div class="article-title">乳酪蛋糕的三種質地秘密</div>
+        <div class="article-excerpt">從輕乳酪、半熟到重乳酪，溫度與時間的差異，決定每種乳酪蛋糕的個性。</div>
+      </div>
+    </div>
+    <div class="article-card">
+      <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?w=500&q=75" alt="贈禮"/>
+      <div class="article-body">
+        <span class="article-tag">贈禮指南</span>
+        <div class="article-title">節日伴手禮怎麼選？酷崎推薦清單</div>
+        <div class="article-excerpt">中秋、過年、情人節，不同場合最適合的甜點組合，讓收禮者感受滿滿心意。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© Ku Chi Cake Workshop. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="index.html">首頁</a>
+    <a href="story.html">店家故事</a>
+    <a href="product.html">商品</a>
+    <a href="about.html">生活風格誌</a>
+    <a href="contact.html">聯絡我們</a>
+  </div>
+</footer>
+
+<script>
+async function generateStory(){
+  const product=document.getElementById('genProduct').value;
+  const style=document.getElementById('genStyle').value;
+  const btn=document.getElementById('genBtn');
+  const output=document.getElementById('genOutput');
+  btn.disabled=true;
+  output.className='gen-output typing';
+  output.textContent='AI 正在為您創作…';
+  const prompt=`你是酷崎蛋糕工房的品牌文案作家。請以「${style}」的風格，為「${product}」寫一篇約150字的繁體中文產品故事。文章要溫暖、有畫面感，直接以正文開始，不需要標題。`;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
+    const data=await res.json();
+    const text=data?.content?.[0]?.text||'生成失敗，請稍後再試。';
+    output.className='gen-output';
+    typeText(output,text);
+  }catch(e){
+    output.className='gen-output';
+    output.textContent=`每一口${product}，都是在最完美的時刻遇見幸福。酷崎蛋糕工房用職人的雙手，將新鮮食材化為溫柔的甜蜜，讓您在忙碌的日常裡，找到片刻的美好與安慰。`;
+  }
+  btn.disabled=false;
+}
+function typeText(el,text){el.textContent='';el.classList.add('typing');let i=0;const iv=setInterval(()=>{el.textContent+=text[i];i++;if(i>=text.length){clearInterval(iv);el.classList.remove('typing');}},28);}
+</script>
+</body>
+</html>
